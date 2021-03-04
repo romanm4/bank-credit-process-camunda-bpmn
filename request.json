@@ -1,0 +1,34 @@
+{
+  "date":1607022201114,
+  "amountOfCreditRequested":100000.0,
+  "customerDetails":{
+    "firstName":"Yan",
+    "lastName":"Kowalski",
+    "passportNumber":"RP99887117",
+    "phone":"48777888999",
+    "email":"yan.kowalski@gmail.com",
+    "address":{
+      "country":"PL",
+      "city":"Warszawa",
+      "street":"Centralna",
+      "houseNumber":1,
+      "flatNumber":1
+    }
+  },
+  "bankDetails":{
+    "bankName":"ASD Bank",
+    "address":{
+      "country":"PL",
+      "city":"Warszawa",
+      "street":"Mazowiecka",
+      "houseNumber":21,
+      "flatNumber":12
+    },
+    "accountNumber":"111222333444555666777888999",
+    "phone":"48991122234",
+    "email":"asd.bank@gmail.com"
+  },
+  "proposedCreditMethodPayment":"CARD",
+  "percent": 3.5,
+  "additionalInformation":"Kredyt na samohód"
+}

@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" automaticImage="JPEG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
+  router="FAN">  
+  <interface id="1" language="java" name="pl.aeh.bpmn.credit.mapper.ICreditRequestMapper" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/mapper/ICreditRequestMapper.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="466" x="97" y="-61"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="2" language="java" name="pl.aeh.bpmn.credit.model.CreditRequest" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/model/CreditRequest.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="423" width="372" x="4549" y="546"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="3" language="java" name="pl.aeh.bpmn.credit.api.rest.ICustomerFinancialDataRestClient" 
+    project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/api/rest/ICustomerFinancialDataRestClient.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="300" x="1181" y="1009"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="4" language="java" name="pl.aeh.bpmn.credit.model.CustomerFinancialData"
+    project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/api/rest/model/CustomerFinancialData.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="315" width="311" x="4961" y="546"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="5" language="java" name="pl.aeh.bpmn.credit.dto.ErrorCreditResponseDTO.ErrorType" 
+    project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/dto/ErrorCreditResponseDTO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="158" x="5312" y="1009"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="6" language="java" name="pl.aeh.bpmn.credit.api.rest.AuthenticateRestClient" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/api/rest/AuthenticateRestClient.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="206" x="2264" y="546"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="pl.aeh.bpmn.credit.model.Address" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/model/Address.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="369" width="165" x="4439" y="1454"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="8" language="java" name="pl.aeh.bpmn.credit.api.rest.IContractRequestRestClient" 
+    project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/api/rest/IContractRequestRestClient.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="336" x="2752" y="1009"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="9" language="java" name="pl.aeh.bpmn.credit.delegate.ProcessDelegate" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/delegate/ProcessDelegate.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="279" width="474" x="3016" y="-61"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="10" language="java" name="pl.aeh.bpmn.credit.api.rest.IValidateCreditRequestRestClient" 
+    project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/api/rest/IValidateCreditRequestRestClient.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="355" x="1795" y="1009"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="11" language="java" name="pl.aeh.bpmn.credit.mapper.VariableMapMapper" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/mapper/VariableMapMapper.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="406" x="3883" y="1009"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="pl.aeh.bpmn.credit.model.CreditRequestValidateInfo"
+    project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/api/rest/model/CreditRequestValidateInfo.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="237" x="603" y="-61"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="pl.aeh.bpmn.credit.dto.ContractRequestDTO" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/dto/ContractRequestDTO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="567" width="250" x="880" y="-61"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="pl.aeh.bpmn.credit.jms.ActiveMqConfiguration" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/jms/ActiveMqConfiguration.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="350" x="1170" y="-61"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="pl.aeh.bpmn.credit.model.CreditData" project="credit-process-bpmn"
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/api/rest/model/CreditData.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="279" width="222" x="5018" y="1009"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="pl.aeh.bpmn.credit.jms.JmsContractConsumer" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/jms/JmsContractConsumer.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="157" x="1560" y="-61"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="pl.aeh.bpmn.credit.dto.CreditResponseDTO" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/dto/CreditResponseDTO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="171" width="160" x="4349" y="546"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="pl.aeh.bpmn.credit.delegate.CreditContractDelegate" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/delegate/CreditContractDelegate.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="185" x="3355" y="546"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="pl.aeh.bpmn.credit.delegate.CustomerFinancialDataDelegate" 
+    project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/delegate/CustomerFinancialDataDelegate.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="206" x="1351" y="546"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="pl.aeh.bpmn.credit.dto.ErrorCreditResponseDTO" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/dto/ErrorCreditResponseDTO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="207" width="234" x="5312" y="546"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="21" language="java" name="pl.aeh.bpmn.credit.mapper.IAuthenticateMapper" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/mapper/IAuthenticateMapper.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="368" x="1757" y="-61"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="22" language="java" name="pl.aeh.bpmn.credit.api.rest.IAuthenticateRestClient" 
+    project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/api/rest/IAuthenticateRestClient.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="81" width="206" x="2387" y="1009"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="23" language="java" name="pl.aeh.bpmn.credit.api.rest.CustomerFinancialDataRestClient" 
+    project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/api/rest/CustomerFinancialDataRestClient.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="300" x="1011" y="546"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="pl.aeh.bpmn.credit.delegate.SendMessageDelegate" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/delegate/SendMessageDelegate.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="187" x="3128" y="546"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="pl.aeh.bpmn.credit.api.rest.ContractRequestRestClient" 
+    project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/api/rest/ContractRequestRestClient.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="171" width="336" x="2752" y="546"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="pl.aeh.bpmn.credit.api.rest.ValidateCreditRequestRestClient" 
+    project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/api/rest/ValidateCreditRequestRestClient.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="355" x="1597" y="546"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="pl.aeh.bpmn.credit.delegate.AuthenticateCustomerDelegate" 
+    project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/delegate/AuthenticateCustomerDelegate.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="202" x="2510" y="546"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="pl.aeh.bpmn.credit.model.Customer" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/model/Customer.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="405" width="180" x="4329" y="1009"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="pl.aeh.bpmn.credit.dto.AuthenticateDTO" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/dto/AuthenticateDTO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="387" width="268" x="2165" y="-61"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="30" language="java" name="pl.aeh.bpmn.credit.model.ProposedCreditMethodPayment" 
+    project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/model/ProposedCreditMethodPayment.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="211" x="4767" y="1009"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="31" language="java" name="pl.aeh.bpmn.credit.model.Bank" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/model/Bank.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="351" width="178" x="4549" y="1009"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="pl.aeh.bpmn.credit.delegate.ValidateClientCreditRequestDelegate" 
+    project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/delegate/ValidateClientCreditRequestDelegate.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="232" x="1992" y="546"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="pl.aeh.bpmn.credit.dto.CreditRequestDTO" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/dto/CreditRequestDTO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="333" width="292" x="2473" y="-61"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="pl.aeh.bpmn.credit.mapper.ContractRequestMapper" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/mapper/ContractRequestMapper.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="408" x="3435" y="1009"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="35" language="java" name="pl.aeh.bpmn.credit.dto.ProcessVariableDTO" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/dto/ProcessVariableDTO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="459" width="316" x="4792" y="-61"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="pl.aeh.bpmn.credit.jms.JmsContractProducer" project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/jms/JmsContractProducer.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="267" x="3128" y="1009"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="pl.aeh.bpmn.credit.model.Token" project="credit-process-bpmn"
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/api/rest/model/Token.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="225" width="171" x="2805" y="-61"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="38" language="java" name="pl.aeh.bpmn.credit.controller.BankCreditProcessController" 
+    project="credit-process-bpmn" 
+    file="/credit-process-bpmn/src/main/java/pl/aeh/bpmn/credit/controller/BankCreditProcessController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="341" x="3883" y="546"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="39">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <realization id="40">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <association id="41">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="42" name="proposedCreditMethodPayment"/>      
+      <multiplicity id="43" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="44">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="45" name="customerDetails"/>      
+      <multiplicity id="46" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="47">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="48" name="variableMapMapper"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="50">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="51" name="authenticateRestClient"/>      
+      <multiplicity id="52" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="53">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="54">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="55" name="errorType"/>      
+      <multiplicity id="56" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="57">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <realization id="58">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <association id="59">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="60" name="jmsContractProducer"/>      
+      <multiplicity id="61" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="36" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="62">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="63">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="64" name="address"/>      
+      <multiplicity id="65" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="66">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="22"/>  
+  </realization>  
+  <association id="67">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="68" name="jmsContractProducer"/>      
+      <multiplicity id="69" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="36" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="70">    
+    <end type="SOURCE" refId="32" navigable="false">      
+      <attribute id="71" name="validateCreditRequestRestClient"/>      
+      <multiplicity id="72" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="73">    
+    <end type="SOURCE" refId="35" navigable="false">      
+      <attribute id="74" name="creditRequest"/>      
+      <multiplicity id="75" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="76">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="77" name="customerFinancialDataRestClient"/>      
+      <multiplicity id="78" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="79">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="80">    
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="81" name="address"/>      
+      <multiplicity id="82" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="83">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="84">    
+    <end type="SOURCE" refId="35" navigable="false">      
+      <attribute id="85" name="errorCreditResponseDTO"/>      
+      <multiplicity id="86" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="87">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="88" name="contractRequestRestClient"/>      
+      <multiplicity id="89" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="90">    
+    <end type="SOURCE" refId="35" navigable="false">      
+      <attribute id="91" name="customerFinancialData"/>      
+      <multiplicity id="92" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="93">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="94" name="contractRequestMapper"/>      
+      <multiplicity id="95" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="34" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="96">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="97" name="creditData"/>      
+      <multiplicity id="98" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="99">    
+    <end type="SOURCE" refId="35" navigable="false">      
+      <attribute id="100" name="creditResponseDTO"/>      
+      <multiplicity id="101" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="102">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="103" name="bankDetails"/>      
+      <multiplicity id="104" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="31" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="105">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="106" name="variableMapMapper"/>      
+      <multiplicity id="107" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="108">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="5"/>  
+  </nesting>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

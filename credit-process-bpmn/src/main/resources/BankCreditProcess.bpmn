@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.4.0">
+  <bpmn:collaboration id="BPMN-Flow">
+    <bpmn:participant id="bankCreditService" name="bankCreditService" processRef="bankCreditServiceId" />
+  </bpmn:collaboration>
+  <bpmn:process id="bankCreditServiceId" name="bankCreditService" isExecutable="true">
+    <bpmn:startEvent id="Event_0bjesbr" name="Start process">
+      <bpmn:outgoing>start-to-authenticateCustomerDelegate</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="AuthenticateCustomerId" name="Authenticate customer" camunda:delegateExpression="${authenticateCustomerDelegate}">
+      <bpmn:incoming>start-to-authenticateCustomerDelegate</bpmn:incoming>
+      <bpmn:outgoing>authenticateCustomerDelegate-to-isCustomerExist</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="isCustomerExist" name="is customer exist?" default="isCustomerExist-to-sendMessageDelegate">
+      <bpmn:incoming>authenticateCustomerDelegate-to-isCustomerExist</bpmn:incoming>
+      <bpmn:outgoing>isCustomerExist-to-customerFinancialDataDelegate</bpmn:outgoing>
+      <bpmn:outgoing>isCustomerExist-to-sendMessageDelegate</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="errorMessageEndProcessId" name="End process">
+      <bpmn:incoming>sendMessageDelegate-to-errorMessageEndProcessId</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Event_061hqug" name="End process">
+      <bpmn:incoming>sendMessageDelegate-to-endProcess</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="getCustomerFinancialDataId" name="Get customer financial data" camunda:delegateExpression="${customerFinancialDataDelegate}">
+      <bpmn:incoming>isCustomerExist-to-customerFinancialDataDelegate</bpmn:incoming>
+      <bpmn:outgoing>customerFinancialDataDelegate-to-validateClientCreditRequestDelegate</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="validateClientCreditRequestId" name="Validate client credit request" camunda:delegateExpression="${validateClientCreditRequestDelegate}">
+      <bpmn:incoming>customerFinancialDataDelegate-to-validateClientCreditRequestDelegate</bpmn:incoming>
+      <bpmn:outgoing>validateClientCreditRequestDelegate-to-isRequestValid</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sendTask id="sendErrorMessageId" name="Send error message" camunda:delegateExpression="${sendMessageDelegate}">
+      <bpmn:incoming>isCustomerExist-to-sendMessageDelegate</bpmn:incoming>
+      <bpmn:outgoing>sendMessageDelegate-to-errorMessageEndProcessId</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:sendTask id="sendCreditRequestRejectionMessageId" name="Send credit request rejection message" camunda:delegateExpression="${sendMessageDelegate}">
+      <bpmn:incoming>isRequestValidId-to-sendMessageDelegate</bpmn:incoming>
+      <bpmn:outgoing>sendMessageDelegate-to-endProcess</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="sendMessageDelegate-to-endProcess" sourceRef="sendCreditRequestRejectionMessageId" targetRef="Event_061hqug" />
+    <bpmn:sequenceFlow id="successSendMessageDelegate-to-endProcess" sourceRef="sendContractId" targetRef="Event_186oc7u" />
+    <bpmn:sequenceFlow id="isRequestValidId-to-sendMessageDelegate" name="isn&#39;t valid" sourceRef="isRequestValidId" targetRef="sendCreditRequestRejectionMessageId" />
+    <bpmn:sequenceFlow id="validateClientCreditRequestDelegate-to-isRequestValid" sourceRef="validateClientCreditRequestId" targetRef="isRequestValidId" />
+    <bpmn:sequenceFlow id="customerFinancialDataDelegate-to-validateClientCreditRequestDelegate" sourceRef="getCustomerFinancialDataId" targetRef="validateClientCreditRequestId" />
+    <bpmn:sequenceFlow id="sendMessageDelegate-to-errorMessageEndProcessId" sourceRef="sendErrorMessageId" targetRef="errorMessageEndProcessId" />
+    <bpmn:sequenceFlow id="isCustomerExist-to-customerFinancialDataDelegate" name="true" sourceRef="isCustomerExist" targetRef="getCustomerFinancialDataId">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{isCustomerExist}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="authenticateCustomerDelegate-to-isCustomerExist" sourceRef="AuthenticateCustomerId" targetRef="isCustomerExist" />
+    <bpmn:sequenceFlow id="start-to-authenticateCustomerDelegate" sourceRef="Event_0bjesbr" targetRef="AuthenticateCustomerId" />
+    <bpmn:exclusiveGateway id="isRequestValidId" name="is request validate?" default="isRequestValidId-to-sendMessageDelegate">
+      <bpmn:incoming>validateClientCreditRequestDelegate-to-isRequestValid</bpmn:incoming>
+      <bpmn:outgoing>isRequestValidId-to-sendMessageDelegate</bpmn:outgoing>
+      <bpmn:outgoing>isRequestValidId-to-isUpdateContractId</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="isCustomerExist-to-sendMessageDelegate" name="false" sourceRef="isCustomerExist" targetRef="sendErrorMessageId" />
+    <bpmn:sequenceFlow id="updateCreditContractDelegate-to-sendMessageDelegate" sourceRef="Activity_1iwvs8n" targetRef="sendContractId" />
+    <bpmn:sequenceFlow id="isRequestValidId-to-isUpdateContractId" name="is valid" sourceRef="isRequestValidId" targetRef="isUpdateContractId">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{isValidateCreditRequest}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="isUpdateContractId-to-creditContractDelegate" name="not update" sourceRef="isUpdateContractId" targetRef="createNewContractId" />
+    <bpmn:sequenceFlow id="isUpdateContractId-to-" name="update" sourceRef="isUpdateContractId" targetRef="Activity_1iwvs8n">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{isUpdateContract}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:exclusiveGateway id="isUpdateContractId" name="is update contract?" default="isUpdateContractId-to-creditContractDelegate">
+      <bpmn:incoming>isRequestValidId-to-isUpdateContractId</bpmn:incoming>
+      <bpmn:outgoing>isUpdateContractId-to-creditContractDelegate</bpmn:outgoing>
+      <bpmn:outgoing>isUpdateContractId-to-</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sendTask id="sendContractId" name="Send contract" camunda:delegateExpression="${sendMessageDelegate}">
+      <bpmn:incoming>updateCreditContractDelegate-to-sendMessageDelegate</bpmn:incoming>
+      <bpmn:incoming>newCreditContractDelegate-to-sendMessageDelegate</bpmn:incoming>
+      <bpmn:outgoing>successSendMessageDelegate-to-endProcess</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:endEvent id="Event_186oc7u" name="End process">
+      <bpmn:incoming>successSendMessageDelegate-to-endProcess</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Activity_1iwvs8n" name="Update exist contract" camunda:delegateExpression="${creditContractDelegate}">
+      <bpmn:incoming>isUpdateContractId-to-</bpmn:incoming>
+      <bpmn:outgoing>updateCreditContractDelegate-to-sendMessageDelegate</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="createNewContractId" name="Create new contract" camunda:delegateExpression="${creditContractDelegate}">
+      <bpmn:incoming>isUpdateContractId-to-creditContractDelegate</bpmn:incoming>
+      <bpmn:outgoing>newCreditContractDelegate-to-sendMessageDelegate</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="newCreditContractDelegate-to-sendMessageDelegate" sourceRef="createNewContractId" targetRef="sendContractId" />
+    <bpmn:textAnnotation id="TextAnnotation_1hnoqtt">
+      <bpmn:text>Start BPMS</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_1uttss6">
+      <bpmn:text>Autoryzacja  użytkownika w systemie bankowym</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_1w7h353">
+      <bpmn:text>Czy istnieje klient w systemie bankowym?</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_0i90pg5">
+      <bpmn:text>Uzyskać dane finansowe klienta</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_05yq8uq">
+      <bpmn:text>Weryfikacja wniosku o kredyt</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_18y42q3">
+      <bpmn:text>Czy wniosek zaakceptowany?</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_1555og9">
+      <bpmn:text>Wysłanie notyfikacji o nieudanej autoryzacji użytkownika</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_0vy57rg">
+      <bpmn:text>Utworzyć nową umowę</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_0sbr9cl">
+      <bpmn:text>Wysłanie notyfikacji o odrzyceniu kredytu</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_02zzpwe">
+      <bpmn:text>Wysłanie kontraktu</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_078ehyg">
+      <bpmn:text>Koniec BPMS</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_1m4hzqa">
+      <bpmn:text>Koniec BPMS</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_04mj7r6" sourceRef="Event_0bjesbr" targetRef="TextAnnotation_1hnoqtt" />
+    <bpmn:association id="Association_063p0oq" sourceRef="AuthenticateCustomerId" targetRef="TextAnnotation_1uttss6" />
+    <bpmn:association id="Association_0jomxdw" sourceRef="isCustomerExist" targetRef="TextAnnotation_1w7h353" />
+    <bpmn:association id="Association_1dp8k72" sourceRef="getCustomerFinancialDataId" targetRef="TextAnnotation_0i90pg5" />
+    <bpmn:association id="Association_1ken9ds" sourceRef="validateClientCreditRequestId" targetRef="TextAnnotation_05yq8uq" />
+    <bpmn:association id="Association_1vvvyn7" sourceRef="isRequestValidId" targetRef="TextAnnotation_18y42q3" />
+    <bpmn:association id="Association_02cop8z" sourceRef="sendErrorMessageId" targetRef="TextAnnotation_1555og9" />
+    <bpmn:association id="Association_0r5vllf" sourceRef="sendCreditRequestRejectionMessageId" targetRef="TextAnnotation_0sbr9cl" />
+    <bpmn:association id="Association_0k1cvnv" sourceRef="Event_061hqug" targetRef="TextAnnotation_1m4hzqa" />
+    <bpmn:association id="Association_12fvzmr" sourceRef="sendContractId" targetRef="TextAnnotation_02zzpwe" />
+    <bpmn:association id="Association_103xj02" sourceRef="Event_186oc7u" targetRef="TextAnnotation_078ehyg" />
+    <bpmn:association id="Association_1idb3i4" sourceRef="createNewContractId" targetRef="TextAnnotation_0vy57rg" />
+    <bpmn:textAnnotation id="TextAnnotation_1eontqg">
+      <bpmn:text>Zmienić umowę</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_14c2lwp">
+      <bpmn:text>Czy tworzymy nową umowę?</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_08mao36" sourceRef="isUpdateContractId" targetRef="TextAnnotation_14c2lwp" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="BPMN-Flow">
+      <bpmndi:BPMNShape id="Participant_1n4ypew_di" bpmnElement="bankCreditService" isHorizontal="true">
+        <dc:Bounds x="140" y="80" width="1610" height="560" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1eyanel_di" bpmnElement="newCreditContractDelegate-to-sendMessageDelegate">
+        <di:waypoint x="1290" y="240" />
+        <di:waypoint x="1370" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0t4wv18_di" bpmnElement="isUpdateContractId-to-">
+        <di:waypoint x="1135" y="360" />
+        <di:waypoint x="1190" y="360" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1146" y="342" width="34" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_077s7fp_di" bpmnElement="isUpdateContractId-to-creditContractDelegate">
+        <di:waypoint x="1110" y="335" />
+        <di:waypoint x="1110" y="240" />
+        <di:waypoint x="1190" y="240" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1100" y="285" width="52" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0o072wp_di" bpmnElement="isRequestValidId-to-isUpdateContractId">
+        <di:waypoint x="1015" y="360" />
+        <di:waypoint x="1085" y="360" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1034" y="342" width="34" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ukajzi_di" bpmnElement="updateCreditContractDelegate-to-sendMessageDelegate">
+        <di:waypoint x="1290" y="360" />
+        <di:waypoint x="1420" y="360" />
+        <di:waypoint x="1420" y="280" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1312" y="342" width="86" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19dty6q_di" bpmnElement="isCustomerExist-to-sendMessageDelegate">
+        <di:waypoint x="560" y="385" />
+        <di:waypoint x="560" y="470" />
+        <di:waypoint x="640" y="470" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="564" y="425" width="23" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_068pd4m_di" bpmnElement="start-to-authenticateCustomerDelegate">
+        <di:waypoint x="328" y="360" />
+        <di:waypoint x="380" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12eaz2e_di" bpmnElement="authenticateCustomerDelegate-to-isCustomerExist">
+        <di:waypoint x="480" y="360" />
+        <di:waypoint x="535" y="360" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="466" y="342" width="84" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0i620zc_di" bpmnElement="isCustomerExist-to-customerFinancialDataDelegate">
+        <di:waypoint x="585" y="360" />
+        <di:waypoint x="640" y="360" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="604" y="342" width="18" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12cm4r3_di" bpmnElement="sendMessageDelegate-to-errorMessageEndProcessId">
+        <di:waypoint x="740" y="470" />
+        <di:waypoint x="802" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15vtsxe_di" bpmnElement="customerFinancialDataDelegate-to-validateClientCreditRequestDelegate">
+        <di:waypoint x="740" y="360" />
+        <di:waypoint x="800" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_170gl7k_di" bpmnElement="validateClientCreditRequestDelegate-to-isRequestValid">
+        <di:waypoint x="900" y="360" />
+        <di:waypoint x="965" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10r5zak_di" bpmnElement="isRequestValidId-to-sendMessageDelegate">
+        <di:waypoint x="990" y="385" />
+        <di:waypoint x="990" y="470" />
+        <di:waypoint x="1080" y="470" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="986" y="425" width="45" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1gfj76w_di" bpmnElement="successSendMessageDelegate-to-endProcess">
+        <di:waypoint x="1470" y="240" />
+        <di:waypoint x="1562" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0l88rzg_di" bpmnElement="sendMessageDelegate-to-endProcess">
+        <di:waypoint x="1180" y="470" />
+        <di:waypoint x="1252" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_0bjesbr_di" bpmnElement="Event_0bjesbr">
+        <dc:Bounds x="292" y="342" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="277" y="385" width="66" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1uw54rq_di" bpmnElement="AuthenticateCustomerId">
+        <dc:Bounds x="380" y="320" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0cmdvpq_di" bpmnElement="isCustomerExist" isMarkerVisible="true">
+        <dc:Bounds x="535" y="335" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="545" y="303" width="89" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1qj2tml_di" bpmnElement="errorMessageEndProcessId">
+        <dc:Bounds x="802" y="452" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="789" y="495" width="62" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_061hqug_di" bpmnElement="Event_061hqug">
+        <dc:Bounds x="1252" y="452" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1239" y="495" width="62" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1cogk0a_di" bpmnElement="getCustomerFinancialDataId">
+        <dc:Bounds x="640" y="320" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1pwc6f2_di" bpmnElement="validateClientCreditRequestId">
+        <dc:Bounds x="800" y="320" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1551gzp_di" bpmnElement="sendErrorMessageId">
+        <dc:Bounds x="640" y="430" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_033z2ty_di" bpmnElement="sendCreditRequestRejectionMessageId">
+        <dc:Bounds x="1080" y="430" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_04fpxn2_di" bpmnElement="isRequestValidId" isMarkerVisible="true">
+        <dc:Bounds x="965" y="335" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="995" y="316" width="49" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1tc5rve_di" bpmnElement="isUpdateContractId" isMarkerVisible="true">
+        <dc:Bounds x="1085" y="335" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1089" y="392" width="46" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vapq4i_di" bpmnElement="sendContractId">
+        <dc:Bounds x="1370" y="200" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_186oc7u_di" bpmnElement="Event_186oc7u">
+        <dc:Bounds x="1562" y="222" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1549" y="265" width="62" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_08r8cgt_di" bpmnElement="Activity_1iwvs8n">
+        <dc:Bounds x="1190" y="320" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1dsf9ly_di" bpmnElement="createNewContractId">
+        <dc:Bounds x="1190" y="200" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1hnoqtt_di" bpmnElement="TextAnnotation_1hnoqtt">
+        <dc:Bounds x="240" y="260" width="100" height="30" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1uttss6_di" bpmnElement="TextAnnotation_1uttss6">
+        <dc:Bounds x="330" y="225" width="100" height="68" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1w7h353_di" bpmnElement="TextAnnotation_1w7h353">
+        <dc:Bounds x="460" y="220" width="100" height="68" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0i90pg5_di" bpmnElement="TextAnnotation_0i90pg5">
+        <dc:Bounds x="590" y="220" width="100" height="54" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_05yq8uq_di" bpmnElement="TextAnnotation_05yq8uq">
+        <dc:Bounds x="730" y="220" width="100" height="54" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_18y42q3_di" bpmnElement="TextAnnotation_18y42q3">
+        <dc:Bounds x="860" y="232" width="100" height="54" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1555og9_di" bpmnElement="TextAnnotation_1555og9">
+        <dc:Bounds x="520" y="490" width="100" height="82" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0vy57rg_di" bpmnElement="TextAnnotation_0vy57rg">
+        <dc:Bounds x="1180" y="120" width="100" height="39" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0sbr9cl_di" bpmnElement="TextAnnotation_0sbr9cl">
+        <dc:Bounds x="1000" y="530" width="100" height="68" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_02zzpwe_di" bpmnElement="TextAnnotation_02zzpwe">
+        <dc:Bounds x="1300" y="110" width="100" height="39" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_078ehyg_di" bpmnElement="TextAnnotation_078ehyg">
+        <dc:Bounds x="1460" y="140" width="100" height="30" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1m4hzqa_di" bpmnElement="TextAnnotation_1m4hzqa">
+        <dc:Bounds x="1330" y="400" width="100" height="30" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1eontqg_di" bpmnElement="TextAnnotation_1eontqg">
+        <dc:Bounds x="1300" y="290" width="100" height="30" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_14c2lwp_di" bpmnElement="TextAnnotation_14c2lwp">
+        <dc:Bounds x="970" y="200" width="100" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_04mj7r6_di" bpmnElement="Association_04mj7r6">
+        <di:waypoint x="306" y="343" />
+        <di:waypoint x="294" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_063p0oq_di" bpmnElement="Association_063p0oq">
+        <di:waypoint x="413" y="320" />
+        <di:waypoint x="402" y="293" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0jomxdw_di" bpmnElement="Association_0jomxdw">
+        <di:waypoint x="553" y="342" />
+        <di:waypoint x="531" y="288" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1dp8k72_di" bpmnElement="Association_1dp8k72">
+        <di:waypoint x="674" y="320" />
+        <di:waypoint x="656" y="274" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1ken9ds_di" bpmnElement="Association_1ken9ds">
+        <di:waypoint x="828" y="320" />
+        <di:waypoint x="802" y="274" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1vvvyn7_di" bpmnElement="Association_1vvvyn7">
+        <di:waypoint x="980" y="345" />
+        <di:waypoint x="938" y="286" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_02cop8z_di" bpmnElement="Association_02cop8z">
+        <di:waypoint x="640" y="485" />
+        <di:waypoint x="620" y="490" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0r5vllf_di" bpmnElement="Association_0r5vllf">
+        <di:waypoint x="1088" y="509" />
+        <di:waypoint x="1066" y="530" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0k1cvnv_di" bpmnElement="Association_0k1cvnv">
+        <di:waypoint x="1286" y="462" />
+        <di:waypoint x="1350" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_12fvzmr_di" bpmnElement="Association_12fvzmr">
+        <di:waypoint x="1393" y="200" />
+        <di:waypoint x="1360" y="149" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_103xj02_di" bpmnElement="Association_103xj02">
+        <di:waypoint x="1569" y="226" />
+        <di:waypoint x="1522" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1idb3i4_di" bpmnElement="Association_1idb3i4">
+        <di:waypoint x="1236" y="200" />
+        <di:waypoint x="1232" y="159" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_08mao36_di" bpmnElement="Association_08mao36">
+        <di:waypoint x="1100" y="345" />
+        <di:waypoint x="1036" y="240" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

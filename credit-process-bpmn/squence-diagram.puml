@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+CreditRequest -> BankCreditProcessController: sendCreditRequestToProcess()
+activate BankCreditProcessController
+alt successful authentication case
+BankCreditProcessController -> AuthenticateCustomerDelegate: authenticate()
+activate AuthenticateCustomerDelegate
+BankCreditProcessController <-- AuthenticateCustomerDelegate: setAuthenticateResponseToProcessContext()
+    alt successful financial data validation case
+        BankCreditProcessController -> CustomerFinancialDataDelegate: getCustomerFinancialData()
+        activate CustomerFinancialDataDelegate
+        BankCreditProcessController <-- CustomerFinancialDataDelegate: setCustomerFinancialDataToProcessContext()
+        BankCreditProcessController -> ValidateClientCreditRequestDelegate: validateCreditRequest()
+        activate ValidateClientCreditRequestDelegate
+        BankCreditProcessController <-- ValidateClientCreditRequestDelegate: setValidateCreditRequestInfo()
+    end
+    alt check if create
+        BankCreditProcessController -> CreditContractDelegate: createNewContract()
+    else check if update
+        BankCreditProcessController -> CreditContractDelegate: updateContract()
+    end
+    activate CreditContractDelegate
+CreditContractDelegate -> SendMessageDelegate: sendContractToActiveMqQueue()
+activate SendMessageDelegate
+else some kind of failure
+BankCreditProcessController <-- AuthenticateCustomerDelegate: setAuthenticationFailedNotificationToProcessContext()
+end
+
+@enduml
