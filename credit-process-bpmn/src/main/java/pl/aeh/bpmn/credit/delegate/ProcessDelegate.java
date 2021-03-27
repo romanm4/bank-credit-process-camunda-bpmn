@@ -24,4 +24,8 @@ public abstract class ProcessDelegate {
     protected CreditRequest getCreditRequestFromDelegateExecution(DelegateExecution delegateExecution) {
         return (CreditRequest) delegateExecution.getVariable(CREDIT_REQUEST);
     }
+
+    protected CustomerFinancialData getCustomerFinancialDataFromDelegateExecution(DelegateExecution delegateExecution) {
+        return (CustomerFinancialData) delegateExecution.getVariable(CUSTOMER_FINANCIAL_DATA);
+    }
 }
